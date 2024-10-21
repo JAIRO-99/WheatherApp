@@ -8,14 +8,19 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = WeatherViewModel()
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+            
+            Text("\(viewModel.locationName)")
+                .foregroundColor(.blue)
+            Text("\(viewModel.getWeatherWithLatAndLon(lat: 19.342, lon: -101.1234))")
+                .foregroundColor(.blue)
         }
         .padding()
+        .onAppear{
+            viewModel.getWeatherWithLatAndLon(lat: 19.342, lon: -101.1234)
+        }
     }
 }
 
